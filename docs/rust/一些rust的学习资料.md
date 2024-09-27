@@ -1,6 +1,8 @@
 ---
-title: rust
+title: 一些rust的学习资料
 createTime: 2024/09/23 21:06:21
+tags:
+    - rust
 permalink: /rust/
 ---
 
