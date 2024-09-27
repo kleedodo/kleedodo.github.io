@@ -8,3 +8,4 @@ permalink: /rust/
 
 - [rust-blog](https://github.com/pretzelhammer/rust-blog/)
 - [a-half-hour-to-learn-rust](https://fasterthanli.me/articles/a-half-hour-to-learn-rust)
+- [The Little Book of Rust Macros](https://veykril.github.io/tlborm/)
