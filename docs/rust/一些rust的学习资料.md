@@ -6,7 +6,7 @@ tags:
 permalink: /rust/
 ---
 
-一些学习rust的资料：
+资料：
 
 - [rust-blog](https://github.com/pretzelhammer/rust-blog/)
 - [a-half-hour-to-learn-rust](https://fasterthanli.me/articles/a-half-hour-to-learn-rust)
