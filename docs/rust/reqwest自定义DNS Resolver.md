@@ -58,7 +58,7 @@ impl Resolve for TrustDNSResolver {
 let trust_dns_resolver = TrustDNSResolver::default();
 let client = reqwest::Client::builder()
     .http1_title_case_headers()
-    .timeout(Duration::from_secs(15))
+    .connect_timeout(Duration::from_secs(15))
     .use_rustls_tls()
     .dns_resolver(Arc::new(trust_dns_resolver))
     .build()
