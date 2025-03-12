@@ -18,10 +18,12 @@ export default defineUserConfig({
        * Shiki 代码高亮
        * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
        */
-      // shiki: {
-      //   languages: ['shell', 'bash', 'typescript', 'javascript'],
-      //   twoslash: true,
-      // },
+       shiki: {
+         languages: ['sh', 'ts', 'js', 'rs', 'html', 'py'],
+         twoslash: true,
+         whitespace: 'boundary',
+         collapseLines: true
+       },
 
       /**
        * markdown enhance
@@ -40,7 +42,7 @@ export default defineUserConfig({
        *  markdown power
        * @see https://theme-plume.vuejs.press/config/plugin/markdown-power/
        */
-      // markdownPower: {
+       markdownPower: {
       //   pdf: true,
       //   caniuse: true,
       //   plot: true,
@@ -51,12 +53,12 @@ export default defineUserConfig({
       //   replit: true,
       //   codeSandbox: true,
       //   jsfiddle: true,
-      //   repl: {
+        repl: {
       //     go: true,
-      //     rust: true,
+          rust: true,
       //     kotlin: true,
-      //   },
-      // },
+         },
+       },
 
       /**
        * comments
