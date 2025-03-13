@@ -50,7 +50,7 @@ cloudflare 需要添加的域名：
 
 | 类型 | 名称 | 内容 | 代理状态 |
 | - | - | - | - |
-| CNAME | cname | speed.marisalnc.com | 开启 |
+| CNAME | cname | speed.marisalnc.com | 关闭 |
 
 ::: tip 提示
 `cname`可以是其他名字，随便起。
