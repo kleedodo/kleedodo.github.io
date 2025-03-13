@@ -55,7 +55,10 @@ cloudflare 需要添加的域名：
 ::: tip 提示
 `cname`可以是其他名字，随便起。
 
-`speed.marisalnc.com` 可以是其他的[CloudFlare公共Cname域名](https://www.wetest.vip/page/cloudflare/cname.html)
+`speed.marisalnc.com` 可以是其他的优选域名:
+
+- [CloudFlare公共Cname域名](https://www.wetest.vip/page/cloudflare/cname.html)
+- [cmliussss 维护的cloudflare 优选域名](https://blog.cmliussss.com/p/CloudFlare%E4%BC%98%E9%80%89/#%E6%88%91%E7%BB%B4%E6%8A%A4%E7%9A%84%E4%BC%98%E9%80%89%E5%AE%98%E6%96%B9%E5%9F%9F%E5%90%8D%EF%BC%8C%E6%9F%A5%E7%9C%8B%E6%9B%B4%E5%A4%9A%EF%BC%9Ahttps-cf-090227-xyz)
 :::
 
 
