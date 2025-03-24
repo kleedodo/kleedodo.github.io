@@ -8,7 +8,7 @@ tags:
 permalink: /article/sa20buuf/
 ---
 
-## 方式一(次选)：直接用cloudflare的CDN
+## 方式一：直接用cloudflare的CDN
 
 cloudflare 需要添加的域名：
 
@@ -43,7 +43,7 @@ cloudns 需要添加的域名
 `_acme-challenge` 使用`NS`是为了方便，如果是用`TXT`类型的话，则每三个月要更新一次。
 :::
 
-## 方式二(不推荐)：使用第三方优选域名
+## 方式二：使用第三方优选域名
 
 
 cloudflare 需要添加的域名：
@@ -62,9 +62,7 @@ cloudflare 需要添加的域名：
 :::
 
 ::: caution 注意
-这种方式在使用worker时，最近（2025-03-25）在国内无法通过优选的ip访问worker，原因不详。
-
-也许是优选域名优选到的ip的问题，可能是cloudflare不允许这些ip这样使用了。
+当使用优选域名具有国内外分流的特性时，不要用国外的dns服务器做解析，否则你将得到国外的优选ip，而这些ip国内不一定能访问得了。
 :::
 
 cloudns 需要添加的域名和方式一一样。
