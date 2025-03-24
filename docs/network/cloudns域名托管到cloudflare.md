@@ -28,9 +28,9 @@ cloudns 需要添加的域名
 | - | - | - |
 | a.ip-ddns.com| NS | sample.ns.cloudflare.com |
 | a.ip-ddns.com| NS | sample2.ns.cloudflare.com |
-| *.ip-ddns.com | CNAME| cname.ip-ddns.com | 
-| cname.ip-ddns.com | NS | sample.ns.cloudflare.com |
-| cname.ip-ddns.com | NS | sample2.ns.cloudflare.com |
+| *.a.ip-ddns.com | CNAME| cname.a.ip-ddns.com | 
+| cname.a.ip-ddns.com | NS | sample.ns.cloudflare.com |
+| cname.a.ip-ddns.com | NS | sample2.ns.cloudflare.com |
 | _acme-challenge.a.ip-ddns.com | NS | sample.ns.cloudflare.com |
 | _acme-challenge.a.ip-ddns.com | NS | sample2.ns.cloudflare.com |
 
