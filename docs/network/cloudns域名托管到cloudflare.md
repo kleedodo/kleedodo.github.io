@@ -8,7 +8,7 @@ tags:
 permalink: /article/sa20buuf/
 ---
 
-## 方式一：直接用cloudflare的CDN
+## 方式一(次选)：直接用cloudflare的CDN
 
 cloudflare 需要添加的域名：
 
@@ -17,7 +17,7 @@ cloudflare 需要添加的域名：
 | A | cname | 8.8.8.8 | 开启 |
 
 ::: tip 提示
-`cname`可以是其他名字，随便起。
+`cname`可以是其他名字，随便起，但是这里用了`cname`这个名字，那么cloudns也需要用这个名字。
 
 `8.8.8.8`可以是任意ip，只要不是cloudflare的ip就可以。
 :::
@@ -43,7 +43,7 @@ cloudns 需要添加的域名
 `_acme-challenge` 使用`NS`是为了方便，如果是用`TXT`类型的话，则每三个月要更新一次。
 :::
 
-## 方式二：使用第三方CNAME域名
+## 方式二(不推荐)：使用第三方优选域名
 
 
 cloudflare 需要添加的域名：
@@ -53,7 +53,7 @@ cloudflare 需要添加的域名：
 | CNAME | cname | speed.marisalnc.com | 关闭 |
 
 ::: tip 提示
-`cname`可以是其他名字，随便起。
+`cname`可以是其他名字，随便起，但是这里用了`cname`这个名字，那么cloudns也需要用这个名字。
 
 `speed.marisalnc.com` 可以是其他的优选域名:
 
@@ -61,15 +61,49 @@ cloudflare 需要添加的域名：
 - [cmliussss 维护的cloudflare 优选域名](https://blog.cmliussss.com/p/CloudFlare%E4%BC%98%E9%80%89/#%E6%88%91%E7%BB%B4%E6%8A%A4%E7%9A%84%E4%BC%98%E9%80%89%E5%AE%98%E6%96%B9%E5%9F%9F%E5%90%8D%EF%BC%8C%E6%9F%A5%E7%9C%8B%E6%9B%B4%E5%A4%9A%EF%BC%9Ahttps-cf-090227-xyz)
 :::
 
+::: caution 注意
+这种方式在使用worker时，最近（2025-03-25）在国内无法通过优选的ip访问worker，原因不详。
+
+也许是优选域名优选到的ip的问题，可能是cloudflare不允许这些ip这样使用了。
+:::
 
 cloudns 需要添加的域名和方式一一样。
 
-## worker 的使用
+## 方式三(推荐)：直接在cloudns上面使用优选域名
 
-直接在 worker的`设置` => `域和路由` 设置`自定义域`即可，不用管边缘证书是否通过验证，你甚至可以删除掉添加这个worker`自定义域`时新增的证书。
+cloudflare 需要添加的域名：
 
-因为在我们把域名托管到cloudflare时，就已经有了根域名和通配符域名的证书了。
+| 类型 | 名称 | 内容 | 代理状态 |
+| - | - | - | - |
+| A | web | 8.8.8.8 | 开启 |
 
-## 子域名的使用
+::: tip 提示
+`web`是你要使用的域名，可以是其他名字，随便起。每一个子域名都需要重新在cloudflare上面添加一个dns记录。
 
-和其他域名一样正常在cloudflare添加子域名的DNS记录即可。
+`8.8.8.8`可以是任意ip，只要不是cloudflare的ip就可以。
+
+这一步是让cloudflare的网络里有我们的域名。
+:::
+
+cloudns 需要添加的域名
+
+| Host | Type | Points To |
+| - | - | - |
+| a.ip-ddns.com| NS | sample.ns.cloudflare.com |
+| a.ip-ddns.com| NS | sample2.ns.cloudflare.com |
+| *.a.ip-ddns.com | CNAME| freeyx.cloudflare88.eu.org  |
+| _acme-challenge.a.ip-ddns.com | NS | sample.ns.cloudflare.com |
+| _acme-challenge.a.ip-ddns.com | NS | sample2.ns.cloudflare.com |
+
+::: tip 提示
+这里直接在cloudns上面使用优选域名`freeyx.cloudflare88.eu.org`
+:::
+
+在cloudflare上添加的任何子域名都会被导去优选域名。
+
+当流量到来时,通过子域名的cname来到优选域名，在访问优选域名时会在cloudflare的边缘cdn节点处理请求，会按照cloudflare上的dns记录去引导流量。
+
+如果是本身就在cloudflare上的服务，比如worker，则子域名的目标地址可以随意填写不在cloudflare网络里的ip。
+
+如果不是在cloudflare上的服务，则需要填写实际的ip地址。
+
