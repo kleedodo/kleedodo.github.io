@@ -9,29 +9,63 @@ tags:
 
 ## 定义
 
+只使用google和cloudflare的ipv4服务器
+
 ```rust
-use std::{net::SocketAddr, sync::Arc};
+use std::{
+    net::{IpAddr, Ipv4Addr, SocketAddr},
+    sync::Arc,
+};
 
 use hickory_resolver::{
-    config::{LookupIpStrategy, ResolverConfig, ResolverOpts},
-    TokioAsyncResolver,
+    TokioResolver,
+    config::{
+        LookupIpStrategy, NameServerConfigGroup, ResolveHosts, ResolverConfig, ResolverOpts,
+        ServerOrderingStrategy,
+    },
+    name_server::TokioConnectionProvider,
 };
 use reqwest::dns::{Addrs, Resolve};
 
 #[derive(Debug, Clone)]
 pub struct TrustDNSResolver {
-    resolver: Arc<TokioAsyncResolver>,
+    resolver: Arc<TokioResolver>,
 }
-
 
 impl Default for TrustDNSResolver {
     fn default() -> Self {
-        let config = ResolverConfig::cloudflare_https();
+        let mut name_servers = NameServerConfigGroup::from_ips_https(
+            &[
+                IpAddr::V4(Ipv4Addr::new(8, 8, 8, 8)),
+                IpAddr::V4(Ipv4Addr::new(8, 8, 4, 4)),
+            ],
+            443,
+            "dns.google".to_string(),
+            true,
+        );
+        name_servers.merge(NameServerConfigGroup::from_ips_https(
+            &[
+                IpAddr::V4(Ipv4Addr::new(1, 1, 1, 1)),
+                IpAddr::V4(Ipv4Addr::new(1, 0, 0, 1)),
+            ],
+            443,
+            "cloudflare-dns.com".to_string(),
+            true,
+        ));
+        let name_server_count = name_servers.len();
+        let config = ResolverConfig::from_parts(None, vec![], name_servers);
         let mut opts = ResolverOpts::default();
-        opts.use_hosts_file = false;
-        opts.ip_strategy = LookupIpStrategy::Ipv4thenIpv6;
+        opts.use_hosts_file = ResolveHosts::Never;
+        // 只解析ipv4地址
+        opts.ip_strategy = LookupIpStrategy::Ipv4Only;
+        opts.server_ordering_strategy = ServerOrderingStrategy::QueryStatistics;
+        opts.attempts = 3;
+        opts.num_concurrent_reqs = name_server_count;
+        let mut resolver_builder =
+            TokioResolver::builder_with_config(config, TokioConnectionProvider::default());
+        *resolver_builder.options_mut() = opts;
         Self {
-            resolver: Arc::new(TokioAsyncResolver::tokio(config, opts)),
+            resolver: Arc::new(resolver_builder.build()),
         }
     }
 }
