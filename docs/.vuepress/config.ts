@@ -1,15 +1,19 @@
 import { defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { plumeTheme } from 'vuepress-theme-plume'
+import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 
 export default defineUserConfig({
   base: '/',
   lang: 'zh-CN',
   title: 'kleedodo',
   description: '博客',
-
   bundler: viteBundler(),
-
+  plugins: [
+    mdEnhancePlugin({
+      demo: true
+    })
+  ],
   theme: plumeTheme({
     hostname: 'https://kleedodo.github.io',
 
@@ -24,20 +28,6 @@ export default defineUserConfig({
          whitespace: 'boundary',
          collapseLines: true
        },
-
-      /**
-       * markdown enhance
-       * @see https://theme-plume.vuejs.press/config/plugins/markdown-enhance/
-       */
-      markdownEnhance: {
-        demo: true,
-      //   include: true,
-      //   chart: true,
-      //   echarts: true,
-      //   mermaid: true,
-      //   flowchart: true,
-      },
-
       /**
        *  markdown power
        * @see https://theme-plume.vuejs.press/config/plugin/markdown-power/
