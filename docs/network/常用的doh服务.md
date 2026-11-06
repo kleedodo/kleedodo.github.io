@@ -7,7 +7,8 @@ tags:
 permalink: /blog/network/常用的doh服务/
 ---
 
-```url
+```text
 https://dns.alidns.com/dns-query
 https://dns.cloudflare.com/dns-query
 ```
+

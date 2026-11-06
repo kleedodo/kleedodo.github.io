@@ -20,7 +20,7 @@ ssh -T git@github.com
 
 在测试是否成功之前，需要配置`~/.ssh/config`:
 
-```conf
+```text
 Host github.com
   User git
   Hostname github.com
@@ -28,3 +28,4 @@ Host github.com
   IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
 ```
+
