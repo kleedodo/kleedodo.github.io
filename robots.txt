@@ -1,0 +1,3 @@
+Sitemap: https://kleedodo.github.io/sitemap.xml
+User-agent:*
+Disallow:
