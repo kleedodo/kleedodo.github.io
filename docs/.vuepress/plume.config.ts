@@ -12,6 +12,24 @@ export default defineThemeConfig({
 
   appearance: true,
 
+  /**
+   * 集合配置（plume 1.0 新路由体系）
+   * @see https://theme-plume.vuejs.press/config/collections/
+   */
+  collections: [
+    {
+      type: 'post',
+      dir: '/',
+      title: '博客',
+      exclude: ['README.md'], // 首页不算文章
+      link: '/blog/', // 文章列表页
+      linkPrefix: '/blog/', // 文章链接前缀（与列表页统一）
+      autoFrontmatter: {
+        permalink: 'filepath', // 用文件路径生成 slug，例如 /article/rust/xxx/
+      },
+    },
+  ],
+
   profile: {
     avatar: '/klee.png',
     name: 'kleedodo',

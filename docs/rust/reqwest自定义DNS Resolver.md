@@ -1,10 +1,10 @@
 ---
 title: reqwest自定义DNS Resolver
 createTime: 2025/01/21 14:16:38
-permalink: /article/qqw0v0hb/
 tags:
-    - rust
-    - dns
+  - rust
+  - dns
+permalink: /blog/rust/reqwest-自定义dns-resolver/
 ---
 
 ## 定义

@@ -2,10 +2,10 @@
 title: cloudns域名托管到cloudflare
 createTime: 2025/03/13 02:46:50
 tags:
- - dns
- - cloudflare
- - cloudns
-permalink: /article/sa20buuf/
+  - dns
+  - cloudflare
+  - cloudns
+permalink: /blog/network/cloudns-域名托管到cloudflare/
 ---
 
 ## 方式一：直接用cloudflare的CDN

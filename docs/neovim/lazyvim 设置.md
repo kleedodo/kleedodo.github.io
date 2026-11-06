@@ -2,9 +2,9 @@
 title: lazyvim 设置
 createTime: 2025/09/21 16:14:33
 tags:
-    - rust
-    - neovim
-permalink: /article/l61b712u/
+  - rust
+  - neovim
+permalink: /blog/neovim/lazyvim-设置/
 ---
 
 ## `~/.config/nvim`配置目录结构

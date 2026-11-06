@@ -1,10 +1,10 @@
 ---
 title: cloudflare worker 域名优选
 createTime: 2025/03/14 00:42:00
-permalink: /article/kr35nk6o/
 tags:
- - dns
- - cloudflare
+  - dns
+  - cloudflare
+permalink: /blog/network/cloudflare-worker-域名优选/
 ---
 
 在域名的DNS记录里添加如下记录：

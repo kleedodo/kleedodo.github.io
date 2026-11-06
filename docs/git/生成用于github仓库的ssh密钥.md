@@ -3,7 +3,7 @@ title: 生成用于github仓库的ssh密钥
 tags:
   - ssh
 createTime: 2024/09/23 02:11:43
-permalink: /article/h3mq5cdy/
+permalink: /blog/git/生成用于github仓库的ssh密钥/
 ---
 
 ```sh

@@ -3,7 +3,7 @@ title: Markdown 在本博客主题的使用
 tags:
   - markdown
 createTime: 2024/09/22 13:04:44
-permalink: /article/6ck9kpl1/
+permalink: /blog/markdown/
 ---
 
 ## 标题 2
