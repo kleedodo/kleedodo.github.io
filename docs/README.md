@@ -17,6 +17,8 @@ config:
         - theme: alt
           text: 可莉的代码仓库→
           link: https://github.com/kleedodo
+  - type: posts
+    collection: blog
 title: 博客
 createTime: 2026/11/06 22:10:47
 ---

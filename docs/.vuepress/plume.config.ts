@@ -19,11 +19,8 @@ export default defineThemeConfig({
   collections: [
     {
       type: 'post',
-      dir: '/',
+      dir: 'blog',
       title: '博客',
-      exclude: ['README.md'], // 首页不算文章
-      link: '/blog/', // 文章列表页
-      linkPrefix: '/blog/', // 文章链接前缀（与列表页统一）
       autoFrontmatter: {
         permalink: 'filepath', // 用文件路径生成 slug，例如 /article/rust/xxx/
       },
